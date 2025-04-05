@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll("a[href^='#']").forEach(anchor => {
+                anchor.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute("href")).scrollIntoView({
+                        behavior: "smooth"
+                    });
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="WhatsApp_Image_2025-04-04_at_21.15.54_e4933109-removebg-preview.png" alt="Logo" class="logo"> 
+            <span class="project-name">BinBot</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="rewards.html">Rewards</a></li>
+            <li><a href="blogs.html">Blogs</a></li>
+        </ul>
+        <div class="nav-right">
+            <a href="#" class="login-btn" id="loginBtn">Login / Signup</a>
+            <!-- Login/Signup Modal -->
+            <div id="loginModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <form id="loginForm">
+                        <div class="input-group">
+                            <input type="text" id="name" placeholder="Name" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" id="email" placeholder="Email" required>
+                            <small class="error" id="emailError"></small>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" id="password" placeholder="Password" required>
+                            
+                        </div>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1><i class="fas fa-upload"></i> Upload Your Image</h1>
+        <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data" id="upload-form">
+            <div class="upload-container" id="drop-zone">
+                <i class="fas fa-image upload-icon"></i>
+                <p class="drag-text">Drag & Drop your image here or</p>
+                <input type="file" id="file" name="file" accept="image/*">
+                <label for="file"><i class="fas fa-folder-open"></i> Choose an image</label>
+                <p id="file-name"></p>
+            </div>
+            <button type="submit">Upload</button>
+        </form>
+        <div id="result" class="result-container" style="display: none;">
+            <img id="uploaded-image" src="#" alt="Uploaded Image">
+            <p class="category" id="prediction-result"></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

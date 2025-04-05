@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">,
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SortSmart</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll("a[href^='#']").forEach(anchor => {
+                anchor.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute("href")).scrollIntoView({
+                        behavior: "smooth"
+                    });
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="WhatsApp_Image_2025-04-04_at_21.15.54_e4933109-removebg-preview.png" alt="Logo" class="logo"> 
+            <span class="project-name">SortSmart</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="http://localhost:8501" target="_blank">Services</a></li>
+            <li><a href="rewards.html">Rewards</a></li>
+            <li><a href="blogs.html">Blogs</a></li>
+        </ul>
+        <div class="nav-right">
+            <a href="#" class="login-btn" id="loginBtn">Login / Signup</a>
+            <!-- Login/Signup Modal -->
+            <div id="loginModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <form id="loginForm">
+                        <div class="input-group">
+                            <input type="text" id="name" placeholder="Name" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" id="email" placeholder="Email" required>
+                            <small class="error" id="emailError"></small>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" id="password" placeholder="Password" required>
+                            
+                        </div>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+
+
+    <section id="home">
+        <div class="slider">
+            <div class="slide fade">
+                <img src="5a843a9678334867be70e41c44f1b912.jpg" alt="Waste Sorting">
+                <div class="text-overlay">
+                    <p class="line">Over 2.1 billion tonnes of municipal solid waste are generated annually. Only 16% is recycled.</p>
+                </div>
+            </div>
+            <div class="slide fade">
+                <img src="5dd87bc9e2e1489ca826fc967a179e26.jpg" alt="Recycling">
+                <div class="text-overlay">
+                    <p class="line">950 million tonnes of waste are disposed of unsustainably without proper segregation.</p>
+                </div>
+            </div>
+            <div class="slide fade">
+                <img src= "f794a120370148a4a8f21d8db5df633c.jpg" alt="Sustainable Living">
+                <div class="text-overlay">
+                    <p class="line">Lack of segregation leads to pollution and challenges in waste management.</p>
+                </div>
+            </div>
+            <div class="dots">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+    <div id="about" class="about">
+        <h1 class="delayed-text">About Us</h1>
+        <p style="color:#263805;"><strong>Welcome to SortSmart!</strong></p>
+        <p>With the increasing challenges of waste disposal and environmental impact, our goal is to simplify recycling by integrating smart technology into everyday waste bins. By using machine learning and real-time image processing, we ensure that waste is sorted accurately and efficiently, helping to reduce contamination and increase recycling rates.    </p>
+
+
+    <br>
+
+    <br>
+    <br>
+    <br>
+    <br>
+        <!-- <h1 class="ab">About Us</h1> -->
+        <section class="introduction">
+            <div class="intro-text">
+                <h1 class="delayed-text"> What we do? </h1>
+                <p> <strong style="font-size: 22px;" >Towards a Cleaner Future: Making Smart Choices for Waste, Energy, and the Environment</strong>
+                    <br>
+                    While the desire to adopt cleaner and more sustainable practices exists, the real challenge lies in providing accessible and effective solutions. Our initiative bridges this gap by leveraging technology-driven waste segregation to empower individuals and communities to take action effortlessly.</p>
+            </div>
+            <div class="intro-image">
+                <img src="waste-segregation-concept-sorting-recycling-garbage-by-material-type-trash-cans-vector_449384-961.avif" alt="Waste Management Illustration">
+            </div>
+        </section>
+        <br>
+        <br>
+        
+
+        <div class="econtainer">
+            <div class="header">
+                <h1>Our Vision: Waste to Value</h1>
+                <p>We envision a world where waste is a resource, recycling is effortless, and technology drives sustainability. Our mission is to reduce pollution, promote eco-friendly habits, and build a cleaner planet through incentivized waste segregation.</p>
+            </div>
+            
+            <div class="flowchart">
+                <div class="flow-level">
+                    <div class="flow-box waste-box">
+                        <h2>Waste Collection</h2>
+                        <p>Collect waste from homes and businesses</p>
+                    </div>
+                </div>
+                
+                <div class="arrows">
+                    <div class="arrow"></div>
+                </div>
+                
+                <div class="flow-level">
+                    <div class="flow-box" style="background-color: #4CAF50;">
+                        <h2>Waste Segregation</h2>
+                        <p>Separate waste into different categories</p>
+                    </div>
+                </div>
+                
+                <div class="categories">
+                    <div id="a" class="category paper" >Paper</div>
+                    <div id="b" class="category metal">Metal</div>
+                    <div id="c" class="category organic">Organic</div>
+                    <div id="d" class="category inorganic">Inorganic</div>
+                    <div id="e"class="category recyclables">Recyclables</div>
+                    <div id="f" class="category non-recyclables">Non-Recyclables</div>
+                    <div id="g" class="category glass">Glass</div>
+                    <div id="h" class="category plastic">Plastic</div>
+                </div
+            
+               <div class="arrows">
+                   <div class="arrow"></div>
+               </div>
+               
+                <div class="flow-level">
+                    <div class="flow-box" style="background-color: #2196F3;">
+                        <h2>Processing</h2>
+                        <p>Process segregated waste for recycling or disposal</p>
+                    </div>
+                </div>
+                
+                <div class="arrows">
+                    <div class="arrow"></div>
+                </div>
+                
+                <div class="rewards">
+                    <h2>Reward System</h2>
+                    <p>Users who correctly segregate waste earn Ethereum-based rewards</p>
+                    <div class="eth-token"></div>
+                    <p>Earn Ethereum points for proper waste disposal practices</p>
+                    
+                    <div class="benefits">
+                        <div class="benefit">
+                            <h3>Environmental Impact</h3>
+                            <p>Reduce landfill waste and pollution while conserving natural resources</p>
+                        </div>
+                        
+                        <div class="benefit">
+                            <h3>Economic Benefits</h3>
+                            <p>Convert waste segregation into valuable cryptocurrency rewards</p>
+                        </div>
+                        
+                        <div class="benefit">
+                            <h3>Community Growth</h3>
+                            <p>Build sustainable communities with proper waste management habits</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <br>
+        <br>
+        <br>
+
+        <h1>Our Impact</h1>
+        <section class="section" id="impact">
+            
+            <p>Our technology ensures <strong>98% accuracy</strong> in waste classification, increases recycling rates by <strong>40-60%</strong>, and reduces landfill waste by <strong>up to 60%</strong>. With smart waste bins, AI-driven sorting, and blockchain tracking, we are creating a sustainable and efficient waste management system.</p>
+            
+            <div class="impact-stats">
+                <div class="stat-card">
+                    <span class="stat-value">98%</span>
+                    <span class="stat-label">Classification Accuracy</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">60%</span>
+                    <span class="stat-label">Recycling Increase</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">60%</span>
+                    <span class="stat-label">Landfill Reduction</span>
+                </div>
+            </div>
+            
+            <div class="tech-icons">
+                <div class="tech-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="tech-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 16V8C20.9996 7.64928 20.9071 7.30481 20.7315 7.00116C20.556 6.69752 20.3037 6.44536 20 6.27L13 2.27C12.696 2.09446 12.3511 2.00205 12 2.00205C11.6489 2.00205 11.304 2.09446 11 2.27L4 6.27C3.69626 6.44536 3.44398 6.69752 3.26846 7.00116C3.09294 7.30481 3.00036 7.64928 3 8V16C3.00036 16.3507 3.09294 16.6952 3.26846 16.9988C3.44398 17.3025 3.69626 17.5546 4 17.73L11 21.73C11.304 21.9055 11.6489 21.9979 12 21.9979C12.3511 21.9979 12.696 21.9055 13 21.73L20 17.73C20.3037 17.5546 20.556 17.3025 20.7315 16.9988C20.9071 16.6952 20.9996 16.3507 21 16Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3.27 6.96L12 12.01L20.73 6.96" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 22.08V12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="tech-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 16.5V18.5C20 19.0304 19.7893 19.5391 19.4142 19.9142C19.0391 20.2893 18.5304 20.5 18 20.5H6C5.46957 20.5 4.96086 20.2893 4.58579 19.9142C4.21071 19.5391 4 19.0304 4 18.5V5.5C4 4.96957 4.21071 4.46086 4.58579 4.08579C4.96086 3.71071 5.46957 3.5 6 3.5H12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 12.5L11 14.5L16 9.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15 3.5H20V8.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M20 3.5L13 10.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <br>
+        <br>
+        <h1>Our Team</h1>
+
+            <p>We are a team of <strong>innovators</strong> specializing in AI and environmental research. Together, we are transforming waste management with smart solutions.</p>
+            <section id="team">
+                <div class="team-members">
+                    <div class="member">
+                        <div class="circle border1">
+                            <img src="WhatsApp Image 2025-04-05 at 02.28.21_6bb3152b.jpg" alt="Team Member 1">
+                        </div>
+                        <p>Pragya Ladha</p>
+                    </div>
+                    <div class="member lower">
+                        <div class="circle border2">
+                            <img src="WhatsApp Image 2025-04-05 at 02.24.00_9465cb15.jpg" alt="Team Member 2">
+                        </div>
+                        <p>Manya Sachdeva</p>
+                    </div>
+                    <div class="member">
+                        <div class="circle border3">
+                            <img src="WhatsApp Image 2025-04-05 at 02.15.41_f0f4d0c7.jpg" alt="Team Member 3">
+                        </div>
+                        <p>Srishti Singh</p>
+                    </div>
+                    <div class="member lower">
+                        <div class="circle border4">
+                            <img src="WhatsApp Image 2025-04-05 at 15.00.56_dee25584.jpg" alt="Team Member 4">
+                        </div>
+                        <p>Khushi</p>
+                    </div>
+                    <div class="member">
+                        <div class="circle border5">
+                            <img src="WhatsApp Image 2025-04-05 at 09.36.32_7d948260.jpg" alt="Team Member 5">
+                        </div>
+                        <p>Swati</p>
+                    </div>
+                </div>
+            </section>
+            
+            
+       
+        </section>
+    
+
+        <footer class="footer-container">
+            <div class="footer-content">
+                <div class="footer-logo-section">
+                    <!-- <div class="footer-logo">SortSmart</div> -->
+                    <p class="footer-description">SortSmart</p>
+                    <!-- <div class="social-icons">
+                        <a href="#" class="social-icon">
+                            <img src="3536505.png" alt="LinkedIn">
+                        </a>
+                        <a href="#" class="social-icon">
+                            <img src="2111463.png" alt="Instagram">
+                        </a>
+                        <a href="#" class="social-icon">
+                            <img src="2504903.png" alt="Facebook">
+                        </a>
+                        <a href="#" class="social-icon">
+                            <img src="1384060.png" alt="YouTube">
+                        </a>
+                    </div> -->
+                </div>
+                
+                <div class="footer-links-section">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link-item">
+                            <a href="#" class="footer-link">
+                                <span class="arrow-icon">&#9656;</span>Home
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="#" class="footer-link">
+                                <span class="arrow-icon">&#9656;</span>About SortSmart
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="#" class="footer-link">
+                                <span class="arrow-icon">&#9656;</span>Features
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="#" class="footer-link">
+                                <span class="arrow-icon">&#9656;</span>Locations
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="#" class="footer-link">
+                                <span class="arrow-icon">&#9656;</span>Contact Us
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links-section">
+                    <h3 class="footer-heading">Services</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link-item">
+                            <a href="#" class="footer-link">
+                                <span class="arrow-icon">&#9656;</span>Smart Collection
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="#" class="footer-link">
+                                <span class="arrow-icon">&#9656;</span>Residential Services
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="#" class="footer-link">
+                                <span class="arrow-icon">&#9656;</span>Commercial Solutions
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="#" class="footer-link">
+                                <span class="arrow-icon">&#9656;</span>Industrial Waste Management
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links-section">
+                    <h3 class="footer-heading">Featured Solutions</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link-item">
+                            <a href="#" class="footer-link">
+                                <span class="arrow-icon">&#9656;</span>Smart Bins Technology
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="#" class="footer-link">
+                                <span class="arrow-icon">&#9656;</span>Recycling Programs
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="#" class="footer-link">
+                                <span class="arrow-icon">&#9656;</span>Waste Analytics
+                            </a>
+                        </li>
+                        <li class="footer-link-item">
+                            <a href="#" class="footer-link">
+                                <span class="arrow-icon">&#9656;</span>Sustainability Consulting
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright-bar">
+                <div>Copyright © 2025 SortSmart. All Rights Reserved.</div>
+                <div>Designed with ♻️ for a cleaner future</div>
+            </div>
+        </footer>
+    </div>  
+</section>
+    </div>  
+    
+    
+    
+
+    
+    
+    <script src="script.js"></script>
+</body>
+</html>

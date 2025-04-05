@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SortSmart - Waste Management Solutions Blog</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Reset and Base Styles */
+.blog-reset * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.blog-body {
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.blog-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Header and Navigation Styles */
+.blog-header {
+    background-color: #1a7c51;
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+.blog-nav {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0;
+    background-color: rgba(26, 124, 81, 0.9);
+}
+
+.blog-nav-link {
+    color: white;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.blog-nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.blog-nav-active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Banner Section */
+.blog-banner {
+    height: 300px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/blog-banner.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.blog-banner-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.blog-breadcrumb {
+    position: absolute;
+    bottom: 20px;
+    color: white;
+}
+
+.blog-breadcrumb-link {
+    color: #4cf0a8;
+}
+
+/* Container and Grid Layout */
+.blog-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.blog-article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.blog-featured-section {
+    grid-column: 1 / -1;
+}
+
+.blog-section-title {
+    font-size: 2.5rem;
+    color: #166d44;
+    margin-bottom: 1rem;
+}
+
+/* Blog Card Styling */
+.blog-article-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.blog-article-card:hover {
+    transform: translateY(-5px);
+}
+
+.blog-article-image {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+}
+
+.blog-article-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.blog-date-badge {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #00d084;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.blog-article-content {
+    padding: 1.5rem;
+}
+
+.blog-article-title {
+    color: #166d44;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.blog-article-author {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: #666;
+}
+
+.blog-author-icon {
+    margin-right: 0.5rem;
+    color: #00d084;
+}
+
+.blog-article-date {
+    display: flex;
+    align-items: center;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.blog-date-icon {
+    margin-right: 0.5rem;
+    color: #00d084;
+}
+
+.blog-article-excerpt {
+    margin-bottom: 1rem;
+}
+
+.blog-read-more {
+    display: inline-block;
+    background-color: #555;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
+
+.blog-read-more:hover {
+    background-color: #333;
+}
+
+/* Footer Styling */
+.blog-footer {
+    background-color: #1a7c51;
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+}
+
+.blog-footer-title {
+    margin-bottom: 1rem;
+}
+
+.blog-social-icons {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.blog-social-link {
+    margin: 0 0.5rem;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.blog-copyright {
+    font-size: 0.9rem;
+}
+
+/* Pagination Styling */
+.blog-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.blog-page-link {
+    padding: 0.5rem 1rem;
+    margin: 0 0.25rem;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s;
+}
+
+.blog-page-link:hover {
+    background-color: #e0e0e0;
+}
+
+.blog-page-current {
+    background-color: #1a7c51;
+    color: white;
+}
+
+/* Search Bar */
+.blog-search {
+    margin-bottom: 2rem;
+}
+
+.blog-search-form {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.blog-search-input {
+    flex-grow: 1;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    font-size: 1rem;
+}
+
+.blog-search-button {
+    background-color: #1a7c51;
+    color: white;
+    border: none;
+    padding: 0 1.5rem;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+/* Categories Widget */
+.blog-categories {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.blog-categories-title {
+    margin-bottom: 1rem;
+    color: #166d44;
+}
+
+.blog-category-list {
+    list-style: none;
+}
+
+.blog-category-item {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.blog-category-item:last-child {
+    border-bottom: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .blog-article-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .blog-banner-title {
+        font-size: 2rem;
+    }
+    
+    .blog-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .blog-nav-link {
+        margin: 0.2rem 0;
+    }
+    
+    .blog-search-form {
+        flex-direction: column;
+    }
+    
+    .blog-search-input {
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .blog-search-button {
+        border-radius: 4px;
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-banner {
+        height: 200px;
+    }
+    
+    .blog-banner-title {
+        font-size: 1.5rem;
+    }
+    
+    .blog-section-title {
+        font-size: 1.8rem;
+    }
+}
+    </style>
+</head>
+<body class="blog-body">
+    <header class="blog-header">
+        <nav class="navbar">
+            <div class="nav-left">
+                <img src="WhatsApp_Image_2025-04-04_at_21.15.54_e4933109-removebg-preview.png" alt="Logo" class="logo"> 
+                <span class="project-name">SortSmart</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="rewards.html">Rewards</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+            </ul>
+            <div class="nav-right">
+                <a href="#" class="login-btn" id="loginBtn">Login / Signup</a>
+                <!-- Login/Signup Modal -->
+                <div id="loginModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <form id="loginForm">
+                            <div class="input-group">
+                                <input type="text" id="name" placeholder="Name" required>
+                            </div>
+                            <div class="input-group">
+                                <input type="email" id="email" placeholder="Email" required>
+                                <small class="error" id="emailError"></small>
+                            </div>
+                            <div class="input-group">
+                                <input type="password" id="password" placeholder="Password" required>
+                                
+                            </div>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        
+    
+
+    <section class="blog-banner">
+        <h1 class="blog-banner-title">Blog</h1>
+        <div class="blog-breadcrumb">
+            <a href="index.html" class="blog-breadcrumb-link">Home</a> — Blog
+        </div>
+    </section>
+
+    <div class="blog-container">
+        <div class="blog-article-grid">
+            <div class="blog-featured-section">
+                <h2 class="blog-section-title">Latest Articles</h2>
+            </div>
+
+            <!-- First blog card -->
+            <article class="blog-article-card">
+                <div class="blog-article-image">
+                    <img src="images/article1.jpg" alt="Article Title" class="blog-article-thumbnail">
+                    <div class="blog-date-badge">
+                        18<br>Jul
+                    </div>
+                </div>
+                <div class="blog-article-content">
+                    <h3 class="blog-article-title">A Letter To Our PM: Let's Talk Trash Fridays</h3>
+                    <div class="blog-article-author">
+                        <span class="blog-author-icon">👤</span>
+                        Manik Thapar
+                    </div>
+                    <div class="blog-article-date">
+                        <span class="blog-date-icon">📅</span>
+                        July 18, 2024
+                    </div>
+                    <p class="blog-article-excerpt">Welcome to another Trash Talking Friday, the only trash talk that calls you home for...</p>
+                    <a href="#" class="blog-read-more">Read More</a>
+                </div>
+            </article>
+
+            <!-- Add more blog cards as needed -->
+        </div>
+        
+        <!-- Pagination -->
+        <div class="blog-pagination">
+            <a href="#" class="blog-page-link blog-page-current">1</a>
+            <a href="#" class="blog-page-link">2</a>
+            <a href="#" class="blog-page-link">3</a>
+            <a href="#" class="blog-page-link">Next →</a>
+        </div>
+    </div>
+
+    <footer class="blog-footer">
+        <h3 class="blog-footer-title">SortSmart - Sustainable Waste Management Solutions</h3>
+        <div class="blog-social-icons">
+            <a href="#" class="blog-social-link" aria-label="Facebook">📱</a>
+            <a href="#" class="blog-social-link" aria-label="Twitter">📱</a>
+            <a href="#" class="blog-social-link" aria-label="Instagram">📱</a>
+            <a href="#" class="blog-social-link" aria-label="LinkedIn">📱</a>
+        </div>
+        <p class="blog-copyright">&copy; 2025 SortSmart. All rights reserved.</p>
+    </footer>
+</body>
+</html>
