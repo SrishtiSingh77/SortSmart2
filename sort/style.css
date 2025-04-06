@@ -1219,5 +1219,64 @@ button {
 .container{
     margin-top: 150px;
 }
+/* Auth-related styles */
+.auth-options {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
 
+.auth-options button {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px;
+    background-color: #2a6f2a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.auth-options button:hover {
+    background-color: #225c22;
+}
+
+.auth-toggle {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.auth-toggle a {
+    color: #2a6f2a;
+    text-decoration: none;
+}
+
+.auth-toggle a:hover {
+    text-decoration: underline;
+}
+
+.auth-status {
+    margin-top: 15px;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #f8d7da;
+    color: #721c24;
+    display: none;
+}
+
+#nameInput {
+    display: none;
+}
+
+#signupButton {
+    display: none;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    display: block;
+    margin-top: 5px;
+}
 

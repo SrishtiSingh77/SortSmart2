@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Keep your existing head content -->
     <meta charset="UTF-8">,
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SortSmart</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
-
+    
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-auth-compat.js"></script>
     
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -31,7 +35,7 @@
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About Us</a></li>
-            <li><a href="http://localhost:8501" target="_blank">Services</a></li>
+            <li><a href="http://localhost:8501/">Services</a></li>
             <li><a href="rewards.html">Rewards</a></li>
             <li><a href="blogs.html">Blogs</a></li>
         </ul>
@@ -60,8 +64,6 @@
         </div>
     </nav>
     
-
-
     <section id="home">
         <div class="slider">
             <div class="slide fade">
@@ -403,7 +405,7 @@
             </div>
         </footer>
     </div>  
-</section>
+    </section>
     </div>  
     
     
@@ -411,6 +413,186 @@
 
     
     
+    <!-- Keep all your existing sections unchanged -->
+    
+    <!-- Add this before your existing script.js -->
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC4z9xLEXEr6Lglj-wGucdD2uTcGktSCCw",
+            authDomain: "sortsmart-a9835.firebaseapp.com",
+            projectId: "sortsmart-a9835",
+            storageBucket: "sortsmart-a9835.firebasestorage.app",
+            messagingSenderId: "98453759968",
+            appId: "1:98453759968:web:26ed5cb3e87ea1b149ad85"
+        };
+      
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        
+        // DOM elements
+        const loginBtn = document.getElementById('loginBtn');
+        const loginModal = document.getElementById('loginModal');
+        const closeBtn = document.querySelector('.close');
+        const loginForm = document.getElementById('loginForm');
+        const nameInput = document.getElementById('nameInput');
+        const email = document.getElementById('email');
+        const password = document.getElementById('password');
+        const loginButton = document.getElementById('loginButton');
+        const signupButton = document.getElementById('signupButton');
+        const toggleAuth = document.getElementById('toggleAuth');
+        const authStatus = document.getElementById('authStatus');
+        
+        let isLoginMode = true;
+        
+        // Event listeners
+        loginBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        window.addEventListener('click', outsideClick);
+        loginButton.addEventListener('click', handleLogin);
+        signupButton.addEventListener('click', handleSignup);
+        toggleAuth.addEventListener('click', toggleAuthMode);
+        
+        // Check auth state on page load
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                // User is signed in
+                loginBtn.textContent = 'Log Out';
+                loginBtn.removeEventListener('click', openModal);
+                loginBtn.addEventListener('click', handleLogout);
+            } else {
+                // User is signed out
+                loginBtn.textContent = 'Login / Signup';
+                loginBtn.removeEventListener('click', handleLogout);
+                loginBtn.addEventListener('click', openModal);
+            }
+        });
+        
+        // Functions
+        function openModal() {
+            loginModal.style.display = 'block';
+        }
+        
+        function closeModal() {
+            loginModal.style.display = 'none';
+            clearErrors();
+            resetForm();
+        }
+        
+        function outsideClick(e) {
+            if (e.target == loginModal) {
+                closeModal();
+            }
+        }
+        
+        function toggleAuthMode(e) {
+            e.preventDefault();
+            isLoginMode = !isLoginMode;
+            
+            if (isLoginMode) {
+                nameInput.style.display = 'none';
+                toggleAuth.textContent = "Don't have an account? Sign Up";
+                loginButton.style.display = 'inline-block';
+                signupButton.style.display = 'none';
+            } else {
+                nameInput.style.display = 'block';
+                toggleAuth.textContent = "Already have an account? Login";
+                loginButton.style.display = 'none';
+                signupButton.style.display = 'inline-block';
+            }
+            
+            clearErrors();
+        }
+        
+        function handleLogin() {
+            const userEmail = email.value;
+            const userPassword = password.value;
+            
+            // Clear previous errors
+            clearErrors();
+            
+            // Sign in with email and password
+            firebase.auth().signInWithEmailAndPassword(userEmail, userPassword)
+                .then((userCredential) => {
+                    // Signed in 
+                    closeModal();
+                })
+                .catch((error) => {
+                    showError(error.message);
+                });
+        }
+        
+        function handleSignup() {
+            const userName = document.getElementById('name').value;
+            const userEmail = email.value;
+            const userPassword = password.value;
+            
+            // Clear previous errors
+            clearErrors();
+            
+            // Create user with email and password
+            firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
+                .then((userCredential) => {
+                    // Signed up
+                    // Update profile to add the name
+                    return userCredential.user.updateProfile({
+                        displayName: userName
+                    });
+                })
+                .then(() => {
+                    closeModal();
+                })
+                .catch((error) => {
+                    showError(error.message);
+                });
+        }
+        
+        function handleLogout() {
+            firebase.auth().signOut().then(() => {
+                // Sign-out successful
+            }).catch((error) => {
+                console.error("Error during logout:", error);
+            });
+        }
+        
+        function showError(message) {
+            authStatus.textContent = message;
+            authStatus.style.color = 'red';
+            authStatus.style.display = 'block';
+        }
+        
+        function clearErrors() {
+            authStatus.textContent = '';
+            authStatus.style.display = 'none';
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('passwordError').textContent = '';
+        }
+        
+        function resetForm() {
+            loginForm.reset();
+            isLoginMode = true;
+            nameInput.style.display = 'none';
+            toggleAuth.textContent = "Don't have an account? Sign Up";
+            loginButton.style.display = 'inline-block';
+            signupButton.style.display = 'none';
+        }
+        
+        // Initialize UI
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set default state
+            if (isLoginMode) {
+                nameInput.style.display = 'none';
+                loginButton.style.display = 'inline-block';
+                signupButton.style.display = 'none';
+            } else {
+                nameInput.style.display = 'block';
+                loginButton.style.display = 'none';
+                signupButton.style.display = 'inline-block';
+            }
+        });
+    </script>
+    
+    <!-- Keep your existing script reference -->
     <script src="script.js"></script>
 </body>
 </html>

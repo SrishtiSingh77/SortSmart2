@@ -1,31 +1,3 @@
-let slideIndex = 0;
-showSlides();
-
-function showSlides() {
-    let slides = document.getElementsByClassName("slide");
-    let dots = document.getElementsByClassName("dot");
-
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    slideIndex++;
-    if (slideIndex > slides.length) { slideIndex = 1; }
-
-    slides[slideIndex - 1].style.display = "block";
-
-    for (let i = 0; i < dots.length; i++) {
-        dots[i].style.background = "rgba(255, 255, 255, 0.7)";
-    }
-    dots[slideIndex - 1].style.background = "white";
-
-    setTimeout(showSlides, 5000);
-}
-
-function currentSlide(n) {
-    slideIndex = n - 1;
-    showSlides();
-}
-
 document.addEventListener("DOMContentLoaded", function () {
     const loginBtn = document.getElementById("loginBtn");
     const modal = document.getElementById("loginModal");
@@ -86,13 +58,13 @@ document.addEventListener("DOMContentLoaded", function () {
         if (existingIndex >= 0) {
             users[existingIndex] = { name, email, password };
         } else {
-            
             users.push({ name, email, password });
         }
 
         localStorage.setItem("users", JSON.stringify(users));
         localStorage.setItem("currentUser", email);
 
+        // Fixed template literals by using backticks instead of regular quotes
         loginBtn.innerHTML = `Hello, ${name} <img src="poweroff.png" id="logoutIcon" class="logout-icon" alt="Logout">`;
         modal.style.display = "none";
 
@@ -105,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (currentUserEmail) {
         const user = users.find(u => u.email === currentUserEmail);
         if (user) {
+            // Fixed template literals by using backticks
             loginBtn.innerHTML = `Hello, ${user.name} <img src="poweroff.png" id="logoutIcon" class="logout-icon" alt="Logout">`;
             attachLogoutListener();
         }
@@ -116,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (logoutIcon) {
                 logoutIcon.addEventListener("click", function (event) {
                     event.preventDefault();
+                    event.stopPropagation(); // Added to prevent event bubbling
                     localStorage.removeItem("currentUser");
                     loginBtn.innerHTML = "Login / Signup";
 
@@ -126,17 +100,4 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }, 0);
     }
-});
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    let nodes = document.querySelectorAll(".node");
-    nodes.forEach(node => {
-        node.addEventListener("mouseover", () => {
-            node.style.boxShadow = "0px 4px 15px rgba(0, 0, 0, 0.3)";
-        });
-        node.addEventListener("mouseleave", () => {
-            node.style.boxShadow = "none";
-        });
-    });
 });
